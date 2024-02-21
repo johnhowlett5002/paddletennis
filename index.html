@@ -38,6 +38,10 @@
         .action-buttons {
             margin-top: 10px;
         }
+
+        #editForm {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -73,6 +77,24 @@
 
     <div class="action-buttons" id="actionButtons"></div>
 
+    <div id="editForm">
+        <h3>Edit Booking</h3>
+        <label for="editName">Name:</label>
+        <input type="text" id="editName" disabled>
+
+        <label for="editDate">Date:</label>
+        <input type="date" id="editDate" required>
+
+        <label for="editActivity">Activity:</label>
+        <select id="editActivity">
+            <option value="Paddle">Paddle</option>
+            <option value="Tennis">Tennis</option>
+        </select>
+
+        <button onclick="saveChanges()">Save Changes</button>
+        <button onclick="cancelEdit()">Cancel</button>
+    </div>
+
     <script>
         function bookSlot() {
             var name = document.getElementById("name").value;
@@ -91,14 +113,41 @@
         }
 
         function changeBooking() {
-            // Implement logic to change the booking (e.g., show a form with pre-filled details).
-            alert("Changing booking functionality not implemented in this example.");
+            var name = document.getElementById("name").value;
+            var date = document.getElementById("date").value;
+            var activity = document.getElementById("activity").value;
+
+            // Populate the edit form with current values
+            document.getElementById("editName").value = name;
+            document.getElementById("editDate").value = date;
+            document.getElementById("editActivity").value = activity;
+
+            // Show the edit form
+            document.getElementById("editForm").style.display = "block";
         }
 
         function deleteBooking() {
             // Implement logic to delete the booking.
             document.getElementById("bookingDetails").innerHTML = "Booking Deleted!";
             document.getElementById("actionButtons").innerHTML = "";
+            document.getElementById("editForm").style.display = "none";
+        }
+
+        function saveChanges() {
+            // Implement logic to save changes.
+            var newName = document.getElementById("editName").value;
+            var newDate = document.getElementById("editDate").value;
+            var newActivity = document.getElementById("editActivity").value;
+
+            var updatedBookingDetails = "Updated Booking Details:<br>Name: " + newName + "<br>Date: " + newDate + "<br>Activity: " + newActivity;
+
+            document.getElementById("bookingDetails").innerHTML = updatedBookingDetails;
+            document.getElementById("editForm").style.display = "none";
+        }
+
+        function cancelEdit() {
+            // Hide the edit form on cancel
+            document.getElementById("editForm").style.display = "none";
         }
     </script>
 </body>
