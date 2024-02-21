@@ -30,6 +30,14 @@
         button:hover {
             background-color: #45a049;
         }
+
+        #bookingDetails {
+            margin-top: 20px;
+        }
+
+        .action-buttons {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -61,14 +69,36 @@
 
     <button onclick="bookSlot()">Book Slot</button>
 
+    <div id="bookingDetails"></div>
+
+    <div class="action-buttons" id="actionButtons"></div>
+
     <script>
         function bookSlot() {
             var name = document.getElementById("name").value;
             var date = document.getElementById("date").value;
             var activity = document.getElementById("activity").value;
 
-            alert("Booking Details:\nName: " + name + "\nDate: " + date + "\nActivity: " + activity);
-            // You can perform additional actions here, like sending the data to a server.
+            var bookingDetails = "Booking Details:<br>Name: " + name + "<br>Date: " + date + "<br>Activity: " + activity;
+
+            var actionButtons = `
+                <button onclick="changeBooking()">Change Booking</button>
+                <button onclick="deleteBooking()">Delete Booking</button>
+            `;
+
+            document.getElementById("bookingDetails").innerHTML = bookingDetails;
+            document.getElementById("actionButtons").innerHTML = actionButtons;
+        }
+
+        function changeBooking() {
+            // Implement logic to change the booking (e.g., show a form with pre-filled details).
+            alert("Changing booking functionality not implemented in this example.");
+        }
+
+        function deleteBooking() {
+            // Implement logic to delete the booking.
+            document.getElementById("bookingDetails").innerHTML = "Booking Deleted!";
+            document.getElementById("actionButtons").innerHTML = "";
         }
     </script>
 </body>
