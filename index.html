@@ -204,4 +204,20 @@
 
         function formatDate(dateString) {
             var options = { day: 'numeric', month: 'long', year: 'numeric' };
-            return new Date(dateString).toLocaleDateString('
+            return new Date(dateString).toLocaleDateString('en-US', options);
+        }
+
+        function parseFormattedDate(formattedDate) {
+            var parts = formattedDate.split(", ");
+            var day = parts[1].split(" ")[0];
+            var month = parts[0];
+            var year = parts[2];
+            var months = {
+                'January': '01', 'February': '02', 'March': '03', 'April': '04', 'May': '05', 'June': '06',
+                'July': '07', 'August': '08', 'September': '09', 'October': '10', 'November': '11', 'December': '12'
+            };
+            return year + '-' + months[month] + '-' + day;
+        }
+    </script>
+</body>
+</html>
