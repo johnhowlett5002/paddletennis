@@ -12,13 +12,14 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
+            flex-direction: column;
         }
 
         form {
             width: 80%;
             max-width: 400px;
             text-align: center;
-            margin: auto;
+            margin-bottom: 20px;
         }
 
         label {
@@ -45,7 +46,7 @@
         }
 
         table {
-            width: 100%;
+            width: 80%;
             border-collapse: collapse;
             margin-top: 20px;
         }
@@ -59,6 +60,10 @@
         th {
             background-color: #4CAF50;
             color: white;
+        }
+
+        #editForm {
+            display: none;
         }
     </style>
 </head>
@@ -167,7 +172,7 @@
         function deleteBooking(button) {
             var row = button.closest("tr");
             row.parentNode.removeChild(row);
-            document.getElementById("editForm").style.display = "none;
+            document.getElementById("editForm").style.display = "none";
         }
 
         function saveChanges() {
@@ -198,14 +203,5 @@
         }
 
         function formatDate(dateString) {
-            var options = { year: 'numeric', month: 'long', day: 'numeric' };
-            return new Date(dateString).toLocaleDateString('en-US', options);
-        }
-
-        function parseFormattedDate(formattedDate) {
-            var parts = formattedDate.split(", ");
-            var day = parts[1].split(" ")[0];
-            var month = parts[0];
-            var year = parts[2];
-            var months = {
-                'January': '
+            var options = { day: 'numeric', month: 'long', year: 'numeric' };
+            return new Date(dateString).toLocaleDateString('
