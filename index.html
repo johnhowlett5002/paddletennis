@@ -28,13 +28,20 @@
         }
 
         select, input, button {
-            width: calc(100% - 20px); /* Adjusted width to account for box model */
+            width: calc(50% - 5px); /* Adjusted width for two elements in a row */
             padding: 10px;
             margin-bottom: 15px;
             box-sizing: border-box;
+            float: left; /* Float elements left */
+        }
+
+        select {
+            margin-right: 10px; /* Add a small margin between select and input */
         }
 
         button {
+            clear: both; /* Clear the float for the button */
+            width: 100%; /* Full width for the button */
             background-color: #4CAF50;
             color: white;
             border: none;
