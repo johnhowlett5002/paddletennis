@@ -89,7 +89,7 @@
         <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
             <div style="width: calc(50% - 5px);">
                 <label for="name">Select a Name:</label>
-                <select id="name" required>
+                <select id="name" required autocomplete="off">
                     <option value="Martin B">Martin B</option>
                     <option value="Martin W">Martin W</option>
                     <option value="John H">John H</option>
@@ -106,12 +106,12 @@
 
             <div style="width: calc(50% - 5px);">
                 <label for="date">Select a Date:</label>
-                <input type="date" id="date" required>
+                <input type="date" id="date" required autocomplete="off">
             </div>
         </div>
 
         <label for="activity">Select an Activity:</label>
-        <select id="activity" required>
+        <select id="activity" required autocomplete="off">
             <option value="Paddle">Paddle</option>
             <option value="Tennis">Tennis</option>
         </select>
@@ -139,10 +139,10 @@
         <input type="text" id="editName" disabled>
 
         <label for="editDate">Date:</label>
-        <input type="date" id="editDate" required>
+        <input type="date" id="editDate" required autocomplete="off">
 
         <label for="editActivity">Activity:</label>
-        <select id="editActivity" required>
+        <select id="editActivity" required autocomplete="off">
             <option value="Paddle">Paddle</option>
             <option value="Tennis">Tennis</option>
         </select>
@@ -234,7 +234,7 @@
 
         function formatDate(dateString) {
             var options = { day: 'numeric', month: 'long', year: 'numeric' };
-            return new Date(dateString).toLocaleDateString('en-US', options);
+            return new Date(dateString).toLocaleDateString('en-GB', options);
         }
 
         function parseFormattedDate(formattedDate) {
