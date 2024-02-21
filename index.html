@@ -28,21 +28,19 @@
         }
 
         select, input, button {
-            width: calc(50% - 5px);
+            width: 100%; /* Make all elements full width */
             padding: 10px;
             margin-bottom: 15px;
             box-sizing: border-box;
-            float: left;
         }
 
-        select {
-            margin-right: 5px;
-            margin-left: 0; /* Remove margin-left for the select element */
+        select, input {
+            float: left; /* Float both select and input elements left */
+            margin-right: 5px; /* Add a small margin between them */
         }
 
         button {
             clear: both;
-            width: 100%;
             background-color: #4CAF50;
             color: white;
             border: none;
@@ -88,23 +86,29 @@
     <h2>Online Paddle/Tennis System</h2>
 
     <form id="bookingForm">
-        <label for="name">Select a Name:</label>
-        <select id="name" required>
-            <option value="Martin B">Martin B</option>
-            <option value="Martin W">Martin W</option>
-            <option value="John H">John H</option>
-            <option value="Bill W">Bill W</option>
-            <option value="Ian F">Ian F</option>
-            <option value="Kevin F">Kevin F</option>
-            <option value="Daren F">Daren F</option>
-            <option value="Peter A">Peter A</option>
-            <option value="Paul M">Paul M</option>
-            <option value="Johnny R">Johnny R</option>
-            <option value="Dave S">Dave S</option>
-        </select>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+            <div style="width: calc(50% - 5px);">
+                <label for="name">Select a Name:</label>
+                <select id="name" required>
+                    <option value="Martin B">Martin B</option>
+                    <option value="Martin W">Martin W</option>
+                    <option value="John H">John H</option>
+                    <option value="Bill W">Bill W</option>
+                    <option value="Ian F">Ian F</option>
+                    <option value="Kevin F">Kevin F</option>
+                    <option value="Daren F">Daren F</option>
+                    <option value="Peter A">Peter A</option>
+                    <option value="Paul M">Paul M</option>
+                    <option value="Johnny R">Johnny R</option>
+                    <option value="Dave S">Dave S</option>
+                </select>
+            </div>
 
-        <label for="date">Select a Date:</label>
-        <input type="date" id="date" required>
+            <div style="width: calc(50% - 5px);">
+                <label for="date">Select a Date:</label>
+                <input type="date" id="date" required>
+            </div>
+        </div>
 
         <label for="activity">Select an Activity:</label>
         <select id="activity" required>
