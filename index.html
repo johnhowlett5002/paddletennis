@@ -148,8 +148,8 @@
         </select>
 
         <div class="action-buttons">
-            <button onclick="saveChanges()">Save Changes</button>
-            <button onclick="cancelEdit()">Cancel</button>
+            <button type="button" onclick="saveChanges()">Save Changes</button>
+            <button type="button" onclick="cancelEdit()">Cancel</button>
         </div>
     </div>
 
@@ -165,8 +165,8 @@
                     <td>${formatDate(date)}</td>
                     <td>${activity}</td>
                     <td class="action-buttons">
-                        <button onclick="changeBooking(this)">Change</button>
-                        <button onclick="deleteBooking(this)">Delete</button>
+                        <button type="button" onclick="changeBooking(this)">Change</button>
+                        <button type="button" onclick="deleteBooking(this)">Delete</button>
                     </td>
                 </tr>
             `;
@@ -214,8 +214,8 @@
                 <td>${formatDate(newDate)}</td>
                 <td>${newActivity}</td>
                 <td class="action-buttons">
-                    <button onclick="changeBooking(this)">Change</button>
-                    <button onclick="deleteBooking(this)">Delete</button>
+                    <button type="button" onclick="changeBooking(this)">Change</button>
+                    <button type="button" onclick="deleteBooking(this)">Delete</button>
                 </td>
             `;
 
