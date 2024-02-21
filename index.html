@@ -62,6 +62,11 @@
             color: white;
         }
 
+        .action-buttons button {
+            display: inline-block;
+            margin-right: 5px;
+        }
+
         #editForm {
             display: none;
         }
@@ -126,8 +131,10 @@
             <option value="Tennis">Tennis</option>
         </select>
 
-        <button onclick="saveChanges()">Save Changes</button>
-        <button onclick="cancelEdit()">Cancel</button>
+        <div class="action-buttons">
+            <button onclick="saveChanges()">Save Changes</button>
+            <button onclick="cancelEdit()">Cancel</button>
+        </div>
     </div>
 
     <script>
@@ -141,7 +148,7 @@
                     <td>${name}</td>
                     <td>${formatDate(date)}</td>
                     <td>${activity}</td>
-                    <td>
+                    <td class="action-buttons">
                         <button onclick="changeBooking(this)">Change</button>
                         <button onclick="deleteBooking(this)">Delete</button>
                     </td>
@@ -184,7 +191,7 @@
                 <td>${newName}</td>
                 <td>${formatDate(newDate)}</td>
                 <td>${newActivity}</td>
-                <td>
+                <td class="action-buttons">
                     <button onclick="changeBooking(this)">Change</button>
                     <button onclick="deleteBooking(this)">Delete</button>
                 </td>
