@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        select, input, button {
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h2>Online Booking System</h2>
+
+    <label for="name">Select a Name:</label>
+    <select id="name">
+        <option value="Martin B">Martin B</option>
+        <option value="Martin W">Martin W</option>
+        <option value="John H">John H</option>
+        <option value="Bill W">Bill W</option>
+        <option value="Ian F">Ian F</option>
+        <option value="Kevin F">Kevin F</option>
+        <option value="Daren F">Daren F</option>
+        <option value="Peter A">Peter A</option>
+        <option value="Paul M">Paul M</option>
+        <option value="Johnny R">Johnny R</option>
+        <option value="Dave S">Dave S</option>
+    </select>
+
+    <label for="date">Select a Date:</label>
+    <input type="date" id="date" required>
+
+    <label for="activity">Select an Activity:</label>
+    <select id="activity">
+        <option value="Paddle">Paddle</option>
+        <option value="Tennis">Tennis</option>
+    </select>
+
+    <button onclick="bookSlot()">Book Slot</button>
+
+    <script>
+        function bookSlot() {
+            var name = document.getElementById("name").value;
+            var date = document.getElementById("date").value;
+            var activity = document.getElementById("activity").value;
+
+            alert("Booking Details:\nName: " + name + "\nDate: " + date + "\nActivity: " + activity);
+            // You can perform additional actions here, like sending the data to a server.
+        }
+    </script>
+</body>
+</html>
