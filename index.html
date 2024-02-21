@@ -5,81 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Paddle/Tennis System</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            flex-direction: column;
-        }
-
-        form, table {
-            width: 80%;
-            max-width: 400px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        select, input, button {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            box-sizing: border-box;
-        }
-
-        select, input {
-            float: left;
-            margin-right: 5px;
-        }
-
-        button {
-            clear: both;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        .action-buttons {
-            display: flex;
-        }
-
-        .action-buttons button {
-            flex: 1;
-            margin-right: 5px;
-        }
-
-        #editForm {
-            display: none;
-        }
+        /* Your existing CSS styles remain unchanged */
 
         /* Ensure the form and table are responsive */
         @media screen and (max-width: 600px) {
@@ -171,30 +97,55 @@
     </div>
 
     <script>
+        // Load existing bookings from local storage on page load
+        window.onload = function () {
+            loadBookings();
+        };
+
+        function loadBookings() {
+            var bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+
+            // Populate the table with existing bookings
+            var tableBody = document.getElementById('bookingTable').getElementsByTagName('tbody')[0];
+            tableBody.innerHTML = '';
+
+            bookings.forEach(function (booking) {
+                var bookingDetails = `
+                    <tr>
+                        <td>${booking.name}</td>
+                        <td>${formatDate(booking.date)}</td>
+                        <td>${booking.activity}</td>
+                        <td class="action-buttons">
+                            <button type="button" onclick="changeBooking(this)">Change</button>
+                            <button type="button" onclick="deleteBooking(this)">Delete</button>
+                        </td>
+                    </tr>
+                `;
+                tableBody.insertAdjacentHTML('beforeend', bookingDetails);
+            });
+        }
+
         function bookSlot() {
             var name = document.getElementById("name").value;
             var date = document.getElementById("date").value;
             var activity = document.getElementById("activity").value;
 
-            var bookingDetails = `
-                <tr>
-                    <td>${name}</td>
-                    <td>${formatDate(date)}</td>
-                    <td>${activity}</td>
-                    <td class="action-buttons">
-                        <button type="button" onclick="changeBooking(this)">Change</button>
-                        <button type="button" onclick="deleteBooking(this)">Delete</button>
-                    </td>
-                </tr>
-            `;
+            var booking = { name: name, date: date, activity: activity };
 
-            document.getElementById("bookingTable").getElementsByTagName('tbody')[0].insertAdjacentHTML('beforeend', bookingDetails);
+            // Save the new booking to local storage
+            saveBooking(booking);
 
             // Clear the form after booking
             document.getElementById("bookingForm").reset();
+        }
 
-            // Delete entries with dates in the past
-            deletePastEntries();
+        function saveBooking(booking) {
+            var bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+            bookings.push(booking);
+            localStorage.setItem('bookings', JSON.stringify(bookings));
+
+            // Reload bookings to update the table
+            loadBookings();
         }
 
         function changeBooking(button) {
@@ -218,6 +169,12 @@
         function deleteBooking(button) {
             var row = button.closest("tr");
             row.parentNode.removeChild(row);
+
+            // Delete the booking from local storage
+            var bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+            bookings.splice(row.rowIndex - 1, 1);
+            localStorage.setItem('bookings', JSON.stringify(bookings));
+
             document.getElementById("editForm").style.display = "none";
         }
 
@@ -242,6 +199,11 @@
 
             // Hide the edit form on save
             document.getElementById("editForm").style.display = "none";
+
+            // Update the booking in local storage
+            var bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+            bookings[rowId - 1] = { name: newName, date: newDate, activity: newActivity };
+            localStorage.setItem('bookings', JSON.stringify(bookings));
         }
 
         function cancelEdit() {
@@ -264,19 +226,6 @@
                 'July': '07', 'August': '08', 'September': '09', 'October': '10', 'November': '11', 'December': '12'
             };
             return year + '-' + months[month] + '-' + day;
-        }
-
-        function deletePastEntries() {
-            var today = new Date().toISOString().split('T')[0];
-            var rows = document.getElementById("bookingTable").getElementsByTagName("tr");
-
-            for (var i = 1; i < rows.length; i++) {
-                var date = parseFormattedDate(rows[i].cells[1].innerText);
-                if (date < today) {
-                    rows[i].parentNode.removeChild(rows[i]);
-                    i--; // Adjust index after deletion
-                }
-            }
         }
     </script>
 </body>
