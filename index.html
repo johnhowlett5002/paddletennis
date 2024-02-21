@@ -178,6 +178,9 @@
 
             // Show the edit form
             document.getElementById("editForm").style.display = "block";
+
+            // Store the row for updating later
+            document.getElementById("editForm").setAttribute("data-row-id", row.rowIndex);
         }
 
         function deleteBooking(button) {
@@ -201,7 +204,8 @@
                 </td>
             `;
 
-            var row = document.getElementById("bookingTable").querySelector("tr.active");
+            var rowId = document.getElementById("editForm").getAttribute("data-row-id");
+            var row = document.getElementById("bookingTable").rows[rowId];
             row.innerHTML = updatedBookingDetails;
 
             // Hide the edit form on save
