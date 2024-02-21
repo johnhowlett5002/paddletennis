@@ -163,6 +163,9 @@
 
             // Clear the form after booking
             document.getElementById("bookingForm").reset();
+
+            // Delete entries with dates in the past
+            deletePastEntries();
         }
 
         function changeBooking(button) {
@@ -232,6 +235,19 @@
                 'July': '07', 'August': '08', 'September': '09', 'October': '10', 'November': '11', 'December': '12'
             };
             return year + '-' + months[month] + '-' + day;
+        }
+
+        function deletePastEntries() {
+            var today = new Date().toISOString().split('T')[0];
+            var rows = document.getElementById("bookingTable").getElementsByTagName("tr");
+
+            for (var i = 1; i < rows.length; i++) {
+                var date = parseFormattedDate(rows[i].cells[1].innerText);
+                if (date < today) {
+                    rows[i].parentNode.removeChild(rows[i]);
+                    i--; // Adjust index after deletion
+                }
+            }
         }
     </script>
 </body>
