@@ -15,7 +15,7 @@
             flex-direction: column;
         }
 
-        form {
+        form, table {
             width: 80%;
             max-width: 400px;
             text-align: center;
@@ -52,7 +52,7 @@
         }
 
         table {
-            width: 80%;
+            width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
@@ -79,6 +79,13 @@
 
         #editForm {
             display: none;
+        }
+
+        /* Ensure the form and table are responsive */
+        @media screen and (max-width: 600px) {
+            form, table {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -136,7 +143,19 @@
     <div id="editForm">
         <h3>Edit Booking</h3>
         <label for="editName">Name:</label>
-        <input type="text" id="editName" disabled>
+        <select id="editName" required autocomplete="off">
+            <option value="Martin B">Martin B</option>
+            <option value="Martin W">Martin W</option>
+            <option value="John H">John H</option>
+            <option value="Bill W">Bill W</option>
+            <option value="Ian F">Ian F</option>
+            <option value="Kevin F">Kevin F</option>
+            <option value="Daren F">Daren F</option>
+            <option value="Peter A">Peter A</option>
+            <option value="Paul M">Paul M</option>
+            <option value="Johnny R">Johnny R</option>
+            <option value="Dave S">Dave S</option>
+        </select>
 
         <label for="editDate">Date:</label>
         <input type="date" id="editDate" required autocomplete="off">
